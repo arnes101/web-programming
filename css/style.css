@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
@@ -33,7 +33,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .heading_container {
@@ -149,7 +149,7 @@ a:focus {
 }
 
 .navbar-brand {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar-brand span {
@@ -205,6 +205,7 @@ a:focus {
 
 .user_option a {
   margin: 0 10px;
+  color: #ffffff;
 }
 
 .user_option .user_link {
@@ -216,27 +217,31 @@ a:focus {
 }
 
 .user_option .cart_link {
+  color: #ffffff;
+}
+
+.user_option .cart_link:hover {
+  color: #ffbe33;
+}
+
+.cart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+
 }
 
-.user_option .cart_link svg {
-  width: 17px;
-  height: auto;
-  fill: #ffffff;
-  margin-bottom: 2px;
+.cart_link:hover+.count {
+  color: #ffbe33;
 }
 
-.user_option .cart_link:hover svg {
-  fill: #ffbe33;
+.count {
+  color: #ffffff;
 }
+
 
 .user_option .order_online {
   display: inline-block;
@@ -400,6 +405,146 @@ a:focus {
   background-color: #ffbe33;
 }
 
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Dimmed background color */
+  z-index: 999;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.side-bar_container {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -600px;
+  width: 300px;
+  /* Adjust width as needed */
+  height: 100%;
+  background-color: white;
+  /* Sidebar background color */
+  z-index: 1000;
+  overflow-y: auto;
+  /* Enable scrolling within sidebar */
+}
+
+.side-bar h2 {
+  border-bottom: solid black;
+}
+
+.close-button {
+  margin-right: 0px;
+  padding-bottom: 0px;
+}
+
+.side-bar_container.hidden {
+  transform: translateX(100%);
+}
+
+.side-bar {
+  padding: 0px;
+}
+
+.cart {
+  cursor: pointer;
+}
+
+
+
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #e7a006;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+/* CSS for hover effect */
+.checkout-button:hover {
+  background-color: #c08300;
+}
+
+.side-bar_container {
+  display: flex;
+  width: 55%;
+  margin-bottom: 30px;
+  margin-left: auto;
+}
+
+#rooot {
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.side-bar {
+  width: 40%;
+  border-radius: 5px;
+  background-color: #eee;
+  margin-left: 20px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+
+}
+
+.head {
+  background-color: goldenrod;
+  border-radius: 3px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+
+/* Style for the remove button */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+  padding: 10px 0px;
+  border-top: 1px solid #333;
+  align-items: center;
+  /* Added to align items vertically */
+}
+
+/* Style for the remove button */
+.remove-button,
+.minus-button,
+.plus-button {
+  background-color: transparent;
+  border: none;
+  color: green;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Hover effect */
+.remove-button:hover,
+.minus-button:hover,
+.plus-button:hover {
+  background-color: #d22208;
+}
+
 .offer_section {
   position: relative;
   padding-top: 45px;
@@ -439,13 +584,13 @@ a:focus {
 }
 
 .offer_section .box .detail-box h5 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: 24px;
   margin: 0;
 }
 
 .offer_section .box .detail-box h6 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Poppins', sans-serif;
   margin: 10px 0;
 }
 
@@ -809,30 +954,6 @@ a:focus {
   margin-bottom: 10px;
 }
 
-.client_section .owl-carousel .owl-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: 45px;
-  padding: 0 15px;
-}
-
-.client_section .owl-carousel .owl-nav .owl-prev,
-.client_section .owl-carousel .owl-nav .owl-next {
-  width: 45px;
-  height: 45px;
-  background-color: #ffbe33;
-  color: #ffffff;
-  outline: none;
-  bottom: 0px;
-  font-size: 24px;
-  margin: 0 5px;
-  border-radius: 100%;
-}
-
 
 .contact_section .heading_container {
   margin-bottom: 45px;
@@ -920,7 +1041,7 @@ a:focus {
 .footer_section .footer-logo {
   font-weight: 600;
   margin-bottom: 20px;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .footer_section p {
