@@ -32,7 +32,7 @@
 
   <link href="css/style.css" rel="stylesheet" />
 
-  <link href="css/responsive.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -109,7 +109,7 @@
                       delectable pizzas to succulent burgers and savory pastas, Feane brings you the best in fast food
                       dining. Explore our menu and treat your taste buds to an unforgettable feast.
                     <div class="btn-box">
-                      <a href="" class="btn1">
+                      <a href="menu.html" class="btn1">
                         Order Now
                       </a>
                     </div>
@@ -541,7 +541,7 @@
         </h2>
       </div>
       <div class="row">
-        <form class="col-md-6">
+        <form class="book col-md-6">
           <div class="form_container">
             <form action="">
               <div>
@@ -575,17 +575,20 @@
               <div>
                 <input type="date" class="form-control">
               </div>
-              <div class="btn_box">
-                <button>
-                  Book Now
-                </button>
+              <div class="submit">
+                <input type="submit" class="submit_box" value="Book now">
               </div>
             </form>
           </div>
         </form>
         <div class="col-md-6">
           <div class="map_container ">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5406.057242320135!2d18.30767765298564!3d43.81115474648757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sba!4v1710195533557!5m2!1sen!2sba"
+              width="555" height="345" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div id="googleMap"></div>
+
           </div>
         </div>
       </div>
@@ -698,10 +701,10 @@
   <!-- nice select -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
   <!-- custom js -->
-  <script src="js/custom.js"></script>
+
   <script src="js/addtocart.js"></script>
   <script>
-    const formEl = document.querySelector('.col-md-6');
+    const formEl = document.querySelector('.book');
     formEl.addEventListener('submit', event => {
       event.preventDefault();
       const formData = new FormData(formEl);
@@ -717,6 +720,9 @@
         .catch(error => console.log(error));
     });
   </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 
 </body>
 

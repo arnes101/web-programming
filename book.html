@@ -31,7 +31,7 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+
 
 </head>
 
@@ -152,7 +152,7 @@
         </h2>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <form class="book col-md-6">
           <div class="form_container">
             <form action="">
               <div>
@@ -186,14 +186,12 @@
               <div>
                 <input type="date" class="form-control">
               </div>
-              <div class="btn_box">
-                <button>
-                  Book Now
-                </button>
+              <div class="submit">
+                <input type="submit" class="submit_box" value="Book now">
               </div>
             </form>
           </div>
-        </div>
+        </form>
         <div class="col-md-6">
           <div class="map_container ">
             <iframe
@@ -206,8 +204,6 @@
         </div>
       </div>
     </div>
-
-
   </section>
 
 
@@ -289,7 +285,23 @@
     </div>
   </footer>
   <!-- footer section -->
-
+  <script>
+    const formEl = document.querySelector('.book');
+    formEl.addEventListener('submit', event => {
+      event.preventDefault();
+      const formData = new FormData(formEl);
+      const data = Object.fromEntries(formData);
+      fetch('https://reqres.in/api/users', {
+        method: 'Post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+    });
+  </script>
 
 </body>
 

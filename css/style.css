@@ -1075,6 +1075,22 @@ a:focus {
   color: #ffbe33;
 }
 
+
+.submit .submit_box {
+  display: inline-block;
+  padding: 10px 55px;
+  background-color: #ffbe33;
+  color: #ffffff;
+  border-radius: 45px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: none;
+}
+
+.submit_box:hover {
+  background-color: #e69c00;
+}
+
 .footer_section .footer-logo {
   display: block;
   font-weight: bold;
