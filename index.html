@@ -541,44 +541,45 @@
         </h2>
       </div>
       <div class="row">
-        <form class="book col-md-6">
+        <form class="book col-md-6" id="bookingForm">
+          <input type="hidden" name="formType" value="booking">
           <div class="form_container">
-            <form action="">
-              <div>
-                <input type="text" class="form-control" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" class="form-control" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Your Email" />
-              </div>
-              <div>
-                <select class="form-control nice-select wide">
-                  <option value="" disabled selected>
-                    How many persons?
-                  </option>
-                  <option value="">
-                    2
-                  </option>
-                  <option value="">
-                    3
-                  </option>
-                  <option value="">
-                    4
-                  </option>
-                  <option value="">
-                    5
-                  </option>
-                </select>
-              </div>
-              <div>
-                <input type="date" class="form-control">
-              </div>
-              <div class="submit">
-                <input type="submit" class="submit_box" value="Book now">
-              </div>
-            </form>
+
+            <div>
+              <input type="text" class="form-control" name="name" placeholder="Your Name" />
+            </div>
+            <div>
+              <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" />
+            </div>
+            <div>
+              <input type="email" class="form-control" name="email" placeholder="Your Email" />
+            </div>
+            <div>
+              <select name="persons" class="form-control nice-select wide">
+                <option value="" disabled selected>
+                  How many persons?
+                </option>
+                <option value="2">
+                  2
+                </option>
+                <option value="3">
+                  3
+                </option>
+                <option value="4">
+                  4
+                </option>
+                <option value="5">
+                  5
+                </option>
+              </select>
+            </div>
+            <div>
+              <input name="date" type="date" class="form-control">
+            </div>
+            <div class="submit">
+              <input type="button" class="submit_box" value="Book now">
+            </div>
+
           </div>
         </form>
         <div class="col-md-6">
@@ -703,22 +704,19 @@
   <!-- custom js -->
 
   <script src="js/addtocart.js"></script>
-  <script>
-    const formEl = document.querySelector('.book');
-    formEl.addEventListener('submit', event => {
-      event.preventDefault();
-      const formData = new FormData(formEl);
-      const data = Object.fromEntries(formData);
-      fetch('https://reqres.in/api/users', {
-        method: 'Post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }).then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error));
-    });
+
+  <script>//ajax call booking
+    $(".submit_box").on('click', function () {
+      var formType = $("#bookingForm input[name='formType']").val();
+      $.ajax({
+        url: "http://localhost/web-programming/connect.php",
+        type: 'POST',
+        data: $("#bookingForm").serialize() + "&formType=" + formType, success: function (response) {
+
+        }
+      })
+    })
+
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
