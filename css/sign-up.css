@@ -101,30 +101,40 @@ body {
 .form-box {
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 512px;
     height: 420px;
     overflow: hidden;
-    z-index: 2;
+    z-index: 0;
 }
 
+
+
 .login-container {
+
     position: absolute;
-    left: 4px;
-    width: 500px;
+    width: 30%;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    /* Hide both forms initially */
+
 }
 
 .register-container {
     position: absolute;
-    right: -520px;
-    width: 500px;
+    width: 30%;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /* Hide both forms initially */
 }
 
 .top span {

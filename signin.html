@@ -31,7 +31,8 @@
             </div>
         </nav>
         <!----------------------------- Form box ----------------------------------->
-        <form class="box">
+        <form class="box" id="loginForm">
+            <input type="hidden" name="loginType" value="login">
 
             <!------------------- login form -------------------------->
             <div class="login-container" id="login">
@@ -40,19 +41,19 @@
                     <header>Login</header>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Username or Email">
+                    <input type="text" name="username" class="input-field" placeholder="Username or Email">
                     <i class="bx bx-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" class="input-field" placeholder="Password">
+                    <input type="password" name="password" class="input-field" placeholder="Password">
                     <i class="bx bx-lock-alt"></i>
                 </div>
                 <div class="input-box">
-                    <input type="submit" class="submit" value="Sign In">
+                    <input type="submit" name="signIn" class="submit" value="Sign In">
                 </div>
                 <div class="two-col">
                     <div class="one">
-                        <input type="checkbox" id="login-check">
+                        <input name="checkBox" type="checkbox" id="login-check">
                         <label for="login-check"> Remember Me</label>
                     </div>
                     <div class="two">
@@ -60,7 +61,10 @@
                     </div>
                 </div>
             </div>
-            <!------------------- registration form -------------------------->
+        </form>
+        <!------------------- registration form -------------------------->
+        <form class="box" id="registerForm">
+            <input type="hidden" name="registerType" value="register">
             <div class="register-container" id="register">
                 <div class="top">
                     <span>Have an account? <a href="#" onclick="login()">Login</a></span>
@@ -68,35 +72,35 @@
                 </div>
                 <div class="two-forms">
                     <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Firstname">
+                        <input type="text" name="Firstname" class="input-field" placeholder="Firstname">
                         <i class="bx bx-user"></i>
                     </div>
                     <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Lastname">
+                        <input type="text" name="Lastname" class="input-field" placeholder="Lastname">
                         <i class="bx bx-user"></i>
                     </div>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Email">
+                    <input type="text" name="email" class="input-field" placeholder="Email">
                     <i class="bx bx-envelope"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" class="input-field" placeholder="Password">
+                    <input name="password" type="password" class="input-field" placeholder="Password">
                     <i class="bx bx-lock-alt"></i>
                 </div>
                 <div class="input-box">
-                    <input type="submit" class="submit" value="Register">
+                    <input name="register" type="submit" class="submit" value="Register">
                 </div>
                 <div class="two-col">
                     <div class="one">
-                        <input type="checkbox" id="register-check">
+                        <input name="checkBox" type="checkbox" id="register-check">
                         <label for="register-check"> Remember Me</label>
                     </div>
                     <div class="two">
                         <label><a href="#">Terms & conditions</a></label>
+                        </ div>
                     </div>
                 </div>
-            </div>
         </form>
     </div>
     <script>
@@ -111,22 +115,23 @@
         }
 
     </script>
+    <script src="js/jquery-3.4.1.min.js"></script>
     <script>
         var a = document.getElementById("loginBtn");
         var b = document.getElementById("registerBtn");
         var x = document.getElementById("login");
         var y = document.getElementById("register");
         function login() {
-            x.style.left = "4px";
-            y.style.right = "-520px";
+            x.style.left = "960px";
+            y.style.right = "-920px";
             a.className += " white-btn";
             b.className = "btn";
             x.style.opacity = 1;
             y.style.opacity = 0;
         }
         function register() {
-            x.style.left = "-510px";
-            y.style.right = "5px";
+            x.style.left = "-900px";
+            y.style.right = "420px";
             a.className = "btn";
             b.className += " white-btn";
             x.style.opacity = 0;
@@ -134,22 +139,54 @@
         }
     </script>
     <script>
-        const formEl = document.querySelector('.form-box');
-        formEl.addEventListener('submit', event => {
-            event.preventDefault();
-            const formData = new FormData(formEl);
-            const data = Object.fromEntries(formData);
-            fetch('https://reqres.in/api/users', {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json'
+
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost/web-programming/connect.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.includes('Login successful!')) {
+                        // Extract username from response (assuming response format is consistent)
+                        var username = response.split(', ')[1];
+                        console.log("Login successful! Welcome, " + username);
+
+                        // Redirect to index.html upon successful login
+                        window.location.replace('http://localhost/web-programming/index.html');
+                    }
+
                 },
-                body: JSON.stringify(data)
-            }).then(res => res.json())
-                .then(data => console.log(data))
-                .catch(error => console.log(error));
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX request failed');
+                    console.log(textStatus, errorThrown);
+                }
+            });
         });
+
+        $('#registerForm').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost/web-programming/connect.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response === 'User registered successfully!') {
+                        // Redirect to index.html upon successful registration
+                        window.location.replace('http://localhost/web-programming/index.html');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX request failed');
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        });
+
     </script>
+
 </body>
 
 </html>
